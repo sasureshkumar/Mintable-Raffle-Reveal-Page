@@ -15,11 +15,9 @@ const ActionBar: FC<Props> = ({tickets}) => {
 
     const activeTicket = useSelector(getActiveTicketSelector);
 
-    const [selectedTicket, setSelectedTicket] = React.useState<InterfaceTicket>(tickets[0]);
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedTicket = tickets.find(ticket => ticket.id === event.target.value);
         if (selectedTicket && selectedTicket.id) {
-            setSelectedTicket(selectedTicket);
             dispatch(setActiveId(selectedTicket.id));
         }
     };
@@ -30,17 +28,13 @@ const ActionBar: FC<Props> = ({tickets}) => {
                 <img src={TicketImage} alt=""/>
                 <div className="ml-3">
                     <h3 className="font-semibold">Draw Tickets</h3>
-                    {selectedTicket && (
+                    {activeTicket && (
                         <div>
-                            {(selectedTicket ? selectedTicket.available : "")}
+                            {(activeTicket ? activeTicket.available : "")}
                             {" "}
-                            <span className="text-gray-500">
-                            Ticket{(selectedTicket.available ? (selectedTicket.available > 1 ? "s" : "") : "")} found
-                        </span>
+                            <span
+                                className="text-gray-500">Ticket{(activeTicket.available ? (activeTicket.available > 1 ? "s" : "") : "")} found</span>
                         </div>
-                    )}
-                    {(
-                        <p className="text-sm">No tickets selected</p>
                     )}
                     <div>
                         Open your tickets and get a chance to win $1000 worth of high
