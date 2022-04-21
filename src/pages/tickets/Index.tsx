@@ -1,10 +1,23 @@
+import React, {useEffect} from "react";
 import type {FC} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {InterfaceTicket} from "../../models";
-import {SimpleButton} from "../../components/buttons";
-
-const tickets: InterfaceTicket[] = [];
+import {SimpleButton, TicketCard} from "../../components";
+import {getTicketsSelector} from '../../features/tickets/selector';
+import {getTicketsAsync} from "../../features/tickets/sagas";
 
 const Index: FC = () => {
+
+    const tickets = useSelector(getTicketsSelector);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getTicketsAsync());
+    }, [dispatch]);
+
+    console.log(tickets);
+
     return (
         <div className="bg-gray-50 flex flex-1 flex-col lg:flex-row lg:p-8 p-2 sm:p-4">
             <div className="bg-white shadow rounded w-full lg:w-1/6">
@@ -16,7 +29,11 @@ const Index: FC = () => {
                 </div>
                 <div className="p-3 lg:p-10 flex flex-row lg:flex-col items-center">
                     {tickets.map((item: InterfaceTicket) => (
-                        <div></div>
+                        <TicketCard
+                            {...item}
+                            key={item.id}
+                            className="lg:mt-3 px-1 lg:px-0"
+                        />
                     ))}
                 </div>
             </div>
