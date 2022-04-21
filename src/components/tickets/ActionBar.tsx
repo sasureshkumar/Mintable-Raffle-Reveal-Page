@@ -58,7 +58,7 @@ const ActionBar: FC<Props> = ({tickets}) => {
 
                     </div>
                     <div className="w-full">
-                        <SimpleButton children="Draw Ticket"/>
+                        <SimpleButton disabled={!activeTicket} children="Draw Ticket"/>
                     </div>
                 </div>
             </div>
