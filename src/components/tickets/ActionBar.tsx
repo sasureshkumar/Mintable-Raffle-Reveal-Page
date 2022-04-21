@@ -22,12 +22,18 @@ const ActionBar: FC<Props> = ({tickets}) => {
                 <img src={TicketImage} alt=""/>
                 <div className="ml-3">
                     <h3 className="font-semibold">Draw Tickets</h3>
-                    <div>{selectedTicket.available}
-                        {" "}
-                        <span className="text-gray-500">
+                    {selectedTicket && (
+                        <div>
+                            {(selectedTicket ? selectedTicket.available : "")}
+                            {" "}
+                            <span className="text-gray-500">
                             Ticket{(selectedTicket.available ? (selectedTicket.available > 1 ? "s" : "") : "")} found
                         </span>
-                    </div>
+                        </div>
+                    )}
+                    {(
+                        <p className="text-sm">No tickets selected</p>
+                    )}
                     <div>
                         Open your tickets and get a chance to win $1000 worth of high
                         quality NFTs! <a href="#" className="text-indigo-500">Learn More</a>
@@ -38,9 +44,11 @@ const ActionBar: FC<Props> = ({tickets}) => {
                 <div className="flex flex-col space-y-4">
                     <div className="">
                         <select
+                            value={selectedTicket ? selectedTicket.id : ""}
                             onChange={handleSelectChange}
                             className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                         >
+                            <option value="" disabled={true}>Select a card</option>
                             {tickets.map((item: InterfaceTicket) => (
                                 <option key={item.id} value={item.id}>{item.name} ({item.available})</option>
                             ))}
