@@ -14,6 +14,7 @@ const Router: FC = () => {
                     <TicketIndex/>
                 </Suspense>}/>
             </Route>
+            <Route path="*" element={<div>404</div>}/>
         </Routes>
     );
 };
