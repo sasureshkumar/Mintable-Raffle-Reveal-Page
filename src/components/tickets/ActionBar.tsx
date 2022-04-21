@@ -7,7 +7,7 @@ export interface Props {
     tickets: InterfaceTicket[];
 }
 
-const ActionFooter: FC<Props> = ({tickets}) => {
+const ActionBar: FC<Props> = ({tickets}) => {
     return (
         <div className="flex justify-between items-center p-6 border-t">
             <div className="flex items-center">
@@ -41,4 +41,4 @@ const ActionFooter: FC<Props> = ({tickets}) => {
         </div>
     );
 };
-export default ActionFooter;
+export default ActionBar;

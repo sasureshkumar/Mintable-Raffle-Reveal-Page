@@ -1,24 +1,17 @@
-import React, {useEffect} from "react";
 import type {FC} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {InterfaceTicket} from "../../models";
-import {SimpleButton, TicketCard, TicketDrawer} from "../../components";
+import {SimpleButton, TicketCard, TicketDrawer, ActionBar} from "../../components";
 import {getTicketsSelector} from '../../features/tickets/selector';
 import {getTicketsAsync} from "../../features/tickets/sagas";
-import TicketImage from '../../assets/images/ticket.svg';
-import ActionFooter from "../../components/tickets/ActionFooter";
-
 
 const Index: FC = () => {
-
     const tickets = useSelector(getTicketsSelector);
-
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(getTicketsAsync());
     }, [dispatch]);
-
     return (
         <div className="bg-gray-50 flex flex-1 flex-col lg:flex-row lg:p-8 p-2 sm:p-4">
             <div className="bg-white shadow rounded w-full lg:w-1/6">
@@ -40,7 +33,7 @@ const Index: FC = () => {
             </div>
             <div className="flex-1 flex flex-col lg:ml-3 bg-white shadow rounded order-first md:order-last">
                 <TicketDrawer/>
-                <ActionFooter tickets={tickets}/>
+                <ActionBar tickets={tickets}/>
             </div>
         </div>
     );
