@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import type {FC} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {InterfaceTicket} from "../../models";
-import {SimpleButton, TicketCard} from "../../components";
+import {SimpleButton, TicketCard, TicketDrawer} from "../../components";
 import {getTicketsSelector} from '../../features/tickets/selector';
 import {getTicketsAsync} from "../../features/tickets/sagas";
 
@@ -15,8 +15,6 @@ const Index: FC = () => {
     useEffect(() => {
         dispatch(getTicketsAsync());
     }, [dispatch]);
-
-    console.log(tickets);
 
     return (
         <div className="bg-gray-50 flex flex-1 flex-col lg:flex-row lg:p-8 p-2 sm:p-4">
@@ -38,7 +36,7 @@ const Index: FC = () => {
                 </div>
             </div>
             <div className="flex-1 flex flex-col lg:ml-3 bg-white shadow rounded order-first md:order-last">
-                Droppable area
+                <TicketDrawer/>
             </div>
         </div>
     );
