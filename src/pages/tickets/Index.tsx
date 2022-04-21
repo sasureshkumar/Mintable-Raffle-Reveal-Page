@@ -5,6 +5,9 @@ import {InterfaceTicket} from "../../models";
 import {SimpleButton, TicketCard, TicketDrawer} from "../../components";
 import {getTicketsSelector} from '../../features/tickets/selector';
 import {getTicketsAsync} from "../../features/tickets/sagas";
+import TicketImage from '../../assets/images/ticket.svg';
+import ActionFooter from "../../components/tickets/ActionFooter";
+
 
 const Index: FC = () => {
 
@@ -37,6 +40,7 @@ const Index: FC = () => {
             </div>
             <div className="flex-1 flex flex-col lg:ml-3 bg-white shadow rounded order-first md:order-last">
                 <TicketDrawer/>
+                <ActionFooter tickets={tickets}/>
             </div>
         </div>
     );
